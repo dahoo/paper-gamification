@@ -136,7 +136,9 @@ class GamificationHandler(FileSystemEventHandler):
         if old_headline != "":
             paragraph = text.split(old_headline)[1]
             if self.is_pdf:
-                old_headline = headlines[-1]
+                old_headline = headlines[
+                    compressed_headlines.index(self.compress_line(old_headline)) - 1
+                ]
             self.count_paragraph_words(old_headline, paragraph)
 
     def count_paragraph_words(self, line, paragraph):
